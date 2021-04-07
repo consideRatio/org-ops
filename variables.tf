@@ -1,4 +1,4 @@
-variable "project_name" {
+variable "project_id" {
   default = "two-eye-two-see-org"
 }
 

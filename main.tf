@@ -37,3 +37,19 @@ resource "google_project_iam_binding" "project_owners" {
 
   members = var.project_owners
 }
+
+# GCS bucket for terraform state of all projects we manage
+# If we need to, we can create ACLs later for per-object permissions,
+# since terraform keeps each workspace in its own object
+resource "google_storage_bucket" "managed_terraform_state" {
+  name    = "${var.project_id}-terraform-state"
+  project = var.project_id
+
+  # Allows us to turn on ACLs in the future if necessary
+  uniform_bucket_level_access = false
+
+  versioning {
+    enabled = true
+  }
+
+}
