@@ -53,4 +53,28 @@ we provision a project for them inside the 2i2c.org GCP organization.
 4. Commit the change, make a PR to the repo with it, and merge it. This is
    preferable to pushing to the repo directly. You can self-merge your PR.
 
+### Setup a project created by client organization?
 
+Sometimes, we won't have access to the billing account - the project would
+be pre-created for us by the client organization. 
+
+If these projects can *not* be moved into the 2i2c.org GCP organization,
+we [can not](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setIamPolicy)
+automatically add 2i2c engineers as owners on the project. They will
+need to be added manually via the [GCP Console web interface](https://console.cloud.google.com).
+They will get an invite in their mail, which they must manually accept.
+
+1. Find current list of 2i2c engineers who should have access to this project,
+   maintained in `variables.tf` under `project_owners`.
+
+2. Use the GCP console to [invite all these users](https://cloud.google.com/iam/docs/granting-changing-revoking-access)
+   to the project, giving them `Basic -> Owner` permissions. Make sure you
+   are doing this in the correct GCP project!
+
+3. Ping all those 2i2c engineers to make sure they accept the invite.
+
+In the future, we should support:
+
+1. Moving projects into 2i2c.org GCP organization when possible.
+2. Decommission access to GCP projects when 2i2c engineers leave.
+3. Make sure new 2i2c engineers are added to all projects we have access to.
