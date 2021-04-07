@@ -28,3 +28,29 @@ Infrastructure for 2i2c-wide operations.
    **BE VERY CAREFUL**, since you could potentially **DESTROY EVERYTHING**. So,
    read the proposed plan from terraform before applying it. We take precautions to prevent
    this from happening, but you should be careful regardless.
+
+## How do I...?
+
+### Create a new project, when I've a billing account?
+
+Once the client organization provides us with a billing account,
+we provision a project for them inside the 2i2c.org GCP organization.
+
+1. Edit `projects.tfvars`, adding an entry to `fully_managed_projects`.
+   The key should be the name of the project we want to create, and the
+   value should be the billing account ID. Add a comment referencing more
+   information about the client organization, ideally pointing to a GitHub
+   issue.
+
+2. Run terraform (with instructions specified above). This will give you a
+   detaile plan on what exactly terraform will do. **Scrutinize this carefully** -
+   only a new project should be created, nothing else should change. Particularly,
+   there should be no **delete** actions.
+
+3. Validate that the project has been created, and you have access to it with
+   your user account. 
+
+4. Commit the change, make a PR to the repo with it, and merge it. This is
+   preferable to pushing to the repo directly. You can self-merge your PR.
+
+
