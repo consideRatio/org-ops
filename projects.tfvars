@@ -5,5 +5,5 @@ fully_managed_projects = {
 }
 
 managed_projects = [
-    # "cb-1003-1696"
+    "cb-1003-1696"
 ]

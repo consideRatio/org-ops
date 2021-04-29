@@ -24,7 +24,7 @@ resource "google_project" "fully_managed_project" {
 }
 
 resource "google_project_iam_binding" "project_owners" {
-  for_each = var.fully_managed_projects
+  for_each = toset(concat(keys(var.fully_managed_projects), var.managed_projects))
 
   project = each.key
   # FIXME: Investigate if roles/editor is enough?
