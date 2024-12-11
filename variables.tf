@@ -24,7 +24,6 @@ variable "project_owners" {
     "user:yuvipanda@2i2c.org",
     "user:georgianaelena@2i2c.org",
     "user:choldgraf@2i2c.org",
-    "user:damianavila@2i2c.org",
-    "user:erik@2i2c.org"
+    "user:damianavila@2i2c.org"
   ]
 }
